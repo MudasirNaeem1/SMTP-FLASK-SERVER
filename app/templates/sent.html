@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Sent</title></head>
+<body>
+    <h2>Sent Emails</h2>
+    {% if mails %}
+    <ul>
+        {% for mail in mails %}
+            <li>
+                <b>To:</b> {{ mail[1] }}<br>
+                <b>Subject:</b> {{ mail[2] }}<br>
+                <b>Message:</b> {{ mail[3] }}
+                <form action="{{ url_for('delete_sent_email', id=mail[0]) }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No sent messages</p>
+    {% endif %}
+    <p><a href="/home">Back to Home</a></p>
+</body>
+</html>

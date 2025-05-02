@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Compose Mail</title></head>
+<body>
+    <h2>Compose Email</h2>
+    <form method="POST">
+        <label>To:</label><input type="email" name="to" required><br>
+        <label>Subject:</label><input type="text" name="subject"><br>
+        <label>Message:</label><br><textarea name="body" rows="5" cols="40" required></textarea><br>
+        <button type="submit">Send</button>
+    </form>
+    <p><a href="/home">Back to Home</a></p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <p style="color:green">{{ messages[0] }}</p>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>

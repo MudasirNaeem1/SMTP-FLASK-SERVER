@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Home</title></head>
+<body>
+    <h2>Welcome {{ session.email }}</h2>
+    <ul>
+        <li><a href="/compose">Compose Mail</a></li>
+        <li><a href="/inbox">Inbox</a></li>
+        <li><a href="/sent">Sent</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+
+    <h3>Important Mails</h3>
+    {% if important_mails %}
+    <ul>
+        {% for mail in important_mails %}
+            <li>
+                <b>From:</b> {{ mail[1] }}<br>
+                <b>Subject:</b> {{ mail[2] }}<br>
+                <b>Message:</b> {{ mail[3] }}<br>
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No important mails</p>
+    {% endif %}
+</body>
+</html>
