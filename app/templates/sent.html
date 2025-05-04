@@ -80,6 +80,31 @@
                 padding: 25px;
             }
 
+            .flash-messages {
+                margin-bottom: 20px;
+            }
+
+            .flash-message {
+                background-color: var(--success);
+                color: white;
+                padding: 10px 15px;
+                border-radius: var(--border-radius);
+                margin-bottom: 10px;
+                animation: fadeOut 5s forwards;
+            }
+
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                }
+                70% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0.7;
+                }
+            }
+
             .mail-list {
                 list-style: none;
             }
@@ -250,7 +275,13 @@
             </header>
 
             <div class="main-content">
-                {% if mails %}
+                {% with messages = get_flashed_messages() %} {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %} {% endwith %} {% if mails %}
                 <ul class="mail-list">
                     {% for mail in mails %}
                     <li class="mail-item">
@@ -291,7 +322,18 @@
                 {% endif %}
             </div>
 
-            <div class="footer">© 2025 Your Company Name</div>
+            <div class="footer">© 2025 SMTP Mail Server</div>
         </div>
+
+        <script>
+            // Hide flash messages after 5 seconds
+            setTimeout(() => {
+                const flashMessages =
+                    document.querySelectorAll(".flash-message");
+                flashMessages.forEach((message) => {
+                    message.style.display = "none";
+                });
+            }, 5000);
+        </script>
     </body>
 </html>
